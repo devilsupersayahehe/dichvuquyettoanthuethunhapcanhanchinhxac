@@ -1,304 +1,2501 @@
-<div id="acc-lp-pro">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* CSS Reset & Variables for this specific block */
-        #acc-lp-pro {
-            --acc-primary: #7a2828;
-            --acc-primary-light: #9d3535;
-            --acc-bg-light: #fdf8f8;
-            --acc-text: #333333;
-            --acc-text-light: #666666;
-            --acc-zalo: #0068FF;
-            --acc-white: #ffffff;
-            font-family: 'Roboto', sans-serif;
-            color: var(--acc-text);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background: var(--acc-white);
-            overflow-x: hidden;
+<!-- LANDING PAGE: QUYẾT TOÁN THUẾ THU NHẬP CÁ NHÂN CHÍNH XÁC (ACC LAW) -->
+<!-- Copy toàn bộ nội dung từ dòng này đến hết để dán vào khối HTML của WordPress -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    /* Nạp Google Fonts Roboto */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap');
+
+    /* CSS Variables & Scoped Reset */
+    .acc-tax-landing-container {
+        --primary: #7a2828;
+        --primary-light: #9c3c3c;
+        --primary-dark: #571a1a;
+        --primary-bg: #faf3f3;
+        --accent: #d4af37;
+        --accent-dark: #b89324;
+        --text-dark: #2c2525;
+        --text-light: #ffffff;
+        --text-muted: #6b5a5a;
+        --bg-white: #ffffff;
+        --bg-light: #fdfbfb;
+        --bg-gray: #f7f3f3;
+        --border-color: #ebdcdc;
+        --success: #2e7d32;
+        --warning: #e65100;
+        --danger: #c62828;
+        --shadow-sm: 0 4px 6px -1px rgba(122, 40, 40, 0.05);
+        --shadow-md: 0 10px 15px -3px rgba(122, 40, 40, 0.08);
+        --shadow-lg: 0 20px 25px -5px rgba(122, 40, 40, 0.12);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        font-family: 'Roboto', sans-serif;
+        color: var(--text-dark);
+        background-color: var(--bg-light);
+        line-height: 1.6;
+        box-sizing: border-box;
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        padding: 0;
+        margin: 0;
+        overflow: visible !important;
+    }
+
+    /* Khắc phục triệt để lỗi hai thanh cuộn dọc (double scrollbar) trên WordPress */
+    html,
+    body {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: auto !important;
+    }
+
+    /* Tự động giải phóng overflow/height cho tất cả các thẻ cha/tổ tiên chứa Landing Page trong WordPress */
+    *:has(> .acc-tax-landing-container),
+    *:has(> *:has(> .acc-tax-landing-container)),
+    *:has(> *:has(> *:has(> .acc-tax-landing-container))),
+    *:has(> *:has(> *:has(> *:has(> .acc-tax-landing-container)))) {
+        overflow: visible !important;
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
+    }
+
+    /* Giải phóng các container bọc ngoài thông dụng của WordPress/Elementor/Gutenberg đề phòng trình duyệt cũ không hỗ trợ :has */
+    .site-content,
+    #content,
+    .entry-content,
+    .elementor,
+    .elementor-section-wrap,
+    .elementor-widget-container,
+    .wp-block-html,
+    .wp-block-post-content {
+        overflow: visible !important;
+        height: auto !important;
+        min-height: auto !important;
+        max-height: none !important;
+    }
+
+    .acc-tax-landing-container * {
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Animations */
+    @keyframes acc-float {
+        0% {
+            transform: translateY(0px);
         }
 
-        #acc-lp-pro * {
-            box-sizing: border-box;
+        50% {
+            transform: translateY(-8px);
         }
 
-        #acc-lp-pro img { max-width: 100%; height: auto; display: block; border-radius: 12px; }
-        #acc-lp-pro h1, #acc-lp-pro h2, #acc-lp-pro h3 { margin: 0; color: var(--acc-primary); }
-        #acc-lp-pro p { margin: 0 0 15px 0; }
-        
-        /* Layout Utilities */
-        .acc-container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
-        .acc-grid { display: grid; gap: 30px; }
-        .acc-grid-2 { grid-template-columns: 1fr 1fr; align-items: center; }
-        .acc-grid-3 { grid-template-columns: repeat(3, 1fr); }
-        .acc-grid-4 { grid-template-columns: repeat(4, 1fr); }
-        .acc-text-center { text-align: center; }
-        
-        /* Buttons */
-        .acc-btn { 
-            display: inline-flex; justify-content: center; align-items: center;
-            padding: 14px 28px; border-radius: 50px; font-weight: 700; font-size: 16px;
-            text-decoration: none !important; transition: all 0.3s ease; border: none; cursor: pointer; gap: 8px;
+        100% {
+            transform: translateY(0px);
         }
-        .acc-btn-primary { background: linear-gradient(135deg, var(--acc-primary), var(--acc-primary-light)); color: var(--acc-white) !important; box-shadow: 0 8px 20px rgba(122, 40, 40, 0.25); }
-        .acc-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(122, 40, 40, 0.35); }
-        .acc-btn-outline { background: transparent; border: 2px solid var(--acc-primary); color: var(--acc-primary) !important; }
-        .acc-btn-outline:hover { background: var(--acc-bg-light); transform: translateY(-3px); }
-        .acc-btn-zalo { background: var(--acc-zalo); color: var(--acc-white) !important; box-shadow: 0 8px 20px rgba(0, 104, 255, 0.25); }
-        .acc-btn-zalo:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0, 104, 255, 0.35); }
+    }
 
-        /* Typography */
-        .acc-title-main { font-size: 2.8rem; font-weight: 900; line-height: 1.2; margin-bottom: 20px; }
-        .acc-title-sec { font-size: 2rem; font-weight: 700; margin-bottom: 30px; text-align: center; position: relative; padding-bottom: 15px; }
-        .acc-title-sec::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 4px; background: var(--acc-primary); border-radius: 2px; }
-        .acc-subtitle { font-size: 1.1rem; color: var(--acc-text-light); margin-bottom: 30px; font-weight: 400; }
-
-        /* Hero Section */
-        .acc-hero { background: linear-gradient(to right, #ffffff 40%, var(--acc-bg-light) 100%); padding: 60px 20px 80px; position: relative;}
-        .acc-hero-tag { display: inline-block; background: rgba(122, 40, 40, 0.1); color: var(--acc-primary); padding: 5px 15px; border-radius: 20px; font-weight: 700; font-size: 0.9rem; margin-bottom: 15px; letter-spacing: 1px; text-transform: uppercase;}
-        .acc-hero .acc-btn-group { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 30px; }
-        .acc-hero-img-box { position: relative; }
-        .acc-hero-img-box::before { content: ''; position: absolute; top: -15px; right: -15px; bottom: 15px; left: 15px; border: 3px solid var(--acc-primary); border-radius: 12px; z-index: 0; pointer-events: none;}
-        .acc-hero-img-box img { position: relative; z-index: 1; box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
-
-        /* Pain Points */
-        .acc-pain { background: var(--acc-white); }
-        .acc-card-pain { background: var(--acc-bg-light); padding: 30px 20px; border-radius: 12px; text-align: center; transition: all 0.3s; border-bottom: 3px solid transparent; height: 100%;}
-        .acc-card-pain:hover { background: #fff; box-shadow: 0 15px 30px rgba(122, 40, 40, 0.08); border-color: var(--acc-primary); transform: translateY(-5px); }
-        .acc-card-pain svg { width: 45px; height: 45px; fill: var(--acc-primary); margin-bottom: 15px; }
-        .acc-card-pain h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--acc-text); font-weight: 700;}
-
-        /* Solution & Services */
-        .acc-solution { background: #fafafa; }
-        .acc-feature-list { list-style: none; padding: 0; margin: 0 0 30px 0; }
-        .acc-feature-list li { display: flex; align-items: flex-start; gap: 15px; margin-bottom: 15px; font-size: 1.05rem; }
-        .acc-feature-list li svg { width: 24px; height: 24px; fill: var(--acc-primary); flex-shrink: 0; margin-top: 2px; }
-
-        /* Process Steps */
-        .acc-process { background: var(--acc-white); }
-        .acc-step-box { text-align: center; position: relative; padding: 20px; }
-        .acc-step-num { width: 60px; height: 60px; background: var(--acc-bg-light); color: var(--acc-primary); font-size: 1.5rem; font-weight: 900; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; border: 2px dashed var(--acc-primary); transition: all 0.3s; }
-        .acc-step-box:hover .acc-step-num { background: var(--acc-primary); color: #fff; border-style: solid;}
-        .acc-step-box h3 { font-size: 1.2rem; margin-bottom: 10px; }
-        .acc-step-box p { font-size: 0.95rem; color: var(--acc-text-light); line-height: 1.5; }
-        
-        /* Stats/Benefits */
-        .acc-stats { background: var(--acc-primary); color: var(--acc-white); padding: 50px 20px; border-radius: 20px; margin: 40px auto; max-width: 1000px; text-align: center;}
-        .acc-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-        .acc-stat-item h4 { font-size: 2.5rem; color: var(--acc-white); margin: 0 0 5px 0; font-weight: 900;}
-        .acc-stat-item p { margin: 0; font-size: 1rem; opacity: 0.9; }
-
-        /* Alert/Penalty */
-        .acc-alert { background: #fff5f5; border-left: 5px solid #d32f2f; padding: 25px; border-radius: 8px; margin-top: 30px; display: flex; align-items: center; gap: 20px;}
-        .acc-alert svg { width: 40px; height: 40px; fill: #d32f2f; flex-shrink: 0;}
-        .acc-alert p { margin: 0; color: #d32f2f; font-weight: 500; font-size: 1.05rem;}
-
-        /* Contact/Footer */
-        .acc-contact { background: var(--acc-bg-light); border-top: 1px solid #f0e6e6; }
-        .acc-contact-box { background: #fff; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: center; max-width: 800px; margin: 0 auto;}
-        .acc-contact-info { display: flex; justify-content: center; gap: 40px; margin: 30px 0; flex-wrap: wrap; }
-        .acc-contact-item { display: flex; flex-direction: column; align-items: center; gap: 10px;}
-        .acc-contact-item svg { width: 30px; height: 30px; fill: var(--acc-primary); }
-        .acc-contact-item span { font-weight: 700; font-size: 1.2rem; color: var(--acc-text); }
-        .acc-contact-item a { text-decoration: none; color: var(--acc-primary); font-weight: 700; }
-
-        /* Animations */
-        .acc-anim { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        .acc-anim.acc-visible { opacity: 1; transform: translateY(0); }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .acc-grid-2, .acc-grid-3, .acc-grid-4, .acc-stats-grid { grid-template-columns: 1fr 1fr; }
-            .acc-title-main { font-size: 2.2rem; }
-            .acc-hero { padding: 40px 20px; }
-            .acc-hero-img-box::before { display: none; }
+    @keyframes acc-slide-up {
+        from {
+            opacity: 0;
+            transform: translateY(15px);
         }
-        @media (max-width: 600px) {
-            .acc-grid-2, .acc-grid-3, .acc-grid-4, .acc-stats-grid { grid-template-columns: 1fr; }
-            .acc-title-main { font-size: 1.8rem; text-align: center; }
-            .acc-subtitle { text-align: center; font-size: 1rem; }
-            .acc-hero .acc-btn-group { justify-content: center; flex-direction: column; width: 100%;}
-            .acc-hero .acc-btn { width: 100%; }
-            .acc-hero-tag { display: block; text-align: center; width: max-content; margin: 0 auto 15px;}
-            .acc-alert { flex-direction: column; text-align: center; }
-        }
-    </style>
 
-    <!-- 1. HERO SECTION -->
-    <section class="acc-hero">
-        <div class="acc-container acc-grid acc-grid-2">
-            <div class="acc-anim">
-                <span class="acc-hero-tag">Dịch vụ kế toán - thuế hàng đầu</span>
-                <h1 class="acc-title-main">Quyết Toán Thuế TNCN<br>Chính Xác & Tối Ưu</h1>
-                <p class="acc-subtitle">Giải pháp quyết toán thuế trọn gói từ Công ty Luật ACC. Giải quyết nhanh gọn thủ tục, bù trừ thu nhập nhiều nơi, cam kết tối ưu quyền lợi hoàn thuế và không lo sai sót, chậm nộp.</p>
-                <div class="acc-btn-group">
-                    <a href="tel:19003330" class="acc-btn acc-btn-primary">
-                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56M15.78 14.36a1 1 0 0 0-.25.95l1.62 4.34A1 1 0 0 1 16.1 21H3.9a1 1 0 0 1-1.05-1.35l1.62-4.34a1 1 0 0 0-.25-.95M8 15.38c-1.11.36-2.3.56-3.53.56M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0.3"/><path d="M19.23 15.26l-2.58-.77a2 2 0 0 0-2.31.84l-1.44 2.15a13.38 13.38 0 0 1-6.19-6.19l2.15-1.44a2 2 0 0 0 .84-2.31l-.77-2.58A2.01 2.01 0 0 0 7.02 3.1h-3A2 2 0 0 0 2 5.21C2.56 14.1 9.9 21.44 18.79 22a2 2 0 0 0 2.11-2.02v-3a2.01 2.01 0 0 0-1.67-1.72z"/></svg>
-                        Hotline 1900 3330
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Common Layout Elements */
+    .acc-tax-section {
+        padding: 40px 20px;
+        /* Reduced vertical padding from 70px to 40px */
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .acc-tax-section-title-wrap {
+        text-align: center;
+        margin-bottom: 30px;
+        /* Reduced from 50px */
+    }
+
+    .acc-tax-section-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background-color: var(--primary-bg);
+        color: var(--primary);
+        font-weight: 700;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 4px 14px;
+        border-radius: 50px;
+        margin-bottom: 10px;
+        border: 1px solid var(--border-color);
+    }
+
+    .acc-tax-section-title {
+        color: var(--primary);
+        font-size: 2rem;
+        /* Reduced from 2.2rem */
+        font-weight: 800;
+        margin-bottom: 12px;
+        position: relative;
+        text-transform: uppercase;
+    }
+
+    .acc-tax-section-title::after {
+        content: '';
+        display: block;
+        width: 50px;
+        height: 3px;
+        background-color: var(--accent);
+        margin: 8px auto 0 auto;
+        border-radius: 2px;
+    }
+
+    .acc-tax-section-desc {
+        color: var(--text-muted);
+        font-size: 1.05rem;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* Section Call-to-Action Wrapper & Button Styles */
+    .acc-section-cta-wrap {
+        text-align: center;
+        margin-top: 30px;
+        /* Spacing below section content */
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .acc-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 26px;
+        /* Slightly more compact buttons */
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-decoration: none;
+        cursor: pointer;
+        transition: var(--transition);
+        border: none;
+        gap: 8px;
+    }
+
+    .acc-btn-primary {
+        background-color: var(--primary);
+        color: var(--text-light);
+        box-shadow: 0 4px 12px rgba(122, 40, 40, 0.25);
+    }
+
+    .acc-btn-primary:hover {
+        background-color: var(--primary-light);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(122, 40, 40, 0.35);
+    }
+
+    .acc-btn-accent {
+        background-color: var(--accent);
+        color: var(--text-dark);
+        box-shadow: 0 4px 12px rgba(212, 175, 55, 0.25);
+    }
+
+    .acc-btn-accent:hover {
+        background-color: var(--accent-dark);
+        color: var(--text-light);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(212, 175, 55, 0.35);
+    }
+
+    .acc-btn-zalo {
+        background-color: #0068ff;
+        color: var(--text-light);
+        box-shadow: 0 4px 12px rgba(0, 104, 255, 0.25);
+    }
+
+    .acc-btn-zalo:hover {
+        background-color: #0056d6;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 104, 255, 0.35);
+    }
+
+    .acc-btn-outline {
+        background-color: transparent;
+        color: var(--text-light);
+        border: 2px solid var(--text-light);
+    }
+
+    .acc-btn-outline:hover {
+        background-color: var(--text-light);
+        color: var(--primary);
+    }
+
+    .acc-btn-outline-dark {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+    }
+
+    .acc-btn-outline-dark:hover {
+        background-color: var(--primary);
+        color: var(--text-light);
+    }
+
+    /* Inline SVG Icon General Style */
+    .acc-svg-icon {
+        width: 18px;
+        height: 18px;
+        display: inline-block;
+        vertical-align: middle;
+        fill: currentColor;
+        flex-shrink: 0;
+    }
+
+    /* Scroll Reveal Helper */
+    .acc-reveal {
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+
+    .acc-reveal.active {
+        opacity: 1;
+    }
+
+    /* 1. HERO SECTION (CLEAN WITH CURVED WAVE BACKGROUND & TRANSPARENT IMAGE) */
+    .acc-hero-container {
+        background-color: #ffffff;
+        color: #1e293b;
+        padding: 60px 0;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+    }
+
+    /* Curved Wave Background Shape on the Right */
+    .acc-hero-wave-bg {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .acc-hero-wave-bg svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .acc-hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        /* Tăng tỉ lệ cột ảnh lên 1.1 và giảm cột chữ xuống 0.9 để ảnh to hơn */
+        gap: 30px;
+        /* Giảm gap để tối ưu không gian hiển thị */
+        align-items: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    .acc-hero-left {
+        animation: acc-slide-up 0.8s ease-out;
+    }
+
+    .acc-hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background-color: rgba(122, 40, 40, 0.05);
+        border: 1px solid rgba(122, 40, 40, 0.18);
+        color: var(--primary);
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 18px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .acc-hero-title {
+        font-size: 2.2rem;
+        /* Giảm nhẹ từ 2.6rem để vừa vặn hơn trên 1 dòng trải ngang */
+        font-weight: 900;
+        line-height: 1.3;
+        margin-bottom: 15px;
+        color: #1e293b;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .acc-hero-title span {
+        color: var(--primary);
+    }
+
+    .acc-hero-title-highlight {
+        color: var(--primary);
+        display: inline-block;
+        position: relative;
+        background: rgba(122, 40, 40, 0.05);
+        border: 1.5px dashed var(--primary);
+        padding: 4px 15px;
+        border-radius: 8px;
+        font-size: 0.75em;
+        /* Thu nhỏ nhẹ thành 0.75em cho cân đối badge */
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+        /* Tránh việc chữ trong badge bị ngắt dòng */
+    }
+
+    .acc-hero-sub {
+        font-size: 1.15rem;
+        margin-bottom: 22px;
+        color: #475569;
+        font-weight: 400;
+        line-height: 1.5;
+    }
+
+    /* Reorganized benefits list into a compact 2-column grid */
+    .acc-hero-benefits {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .acc-hero-benefit-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 1rem;
+        color: #334155;
+    }
+
+    .acc-hero-benefit-icon-wrapper {
+        color: var(--primary);
+        background-color: rgba(122, 40, 40, 0.08);
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 2px;
+    }
+
+    .acc-hero-btn-group {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+    }
+
+    .acc-hero-contact-quick {
+        display: flex;
+        gap: 25px;
+        flex-wrap: wrap;
+        padding-top: 15px;
+        border-top: 1px solid rgba(122, 40, 40, 0.15);
+    }
+
+    .acc-hero-contact-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 500;
+        font-size: 0.95rem;
+        color: #334155;
+    }
+
+    .acc-hero-contact-item svg {
+        color: var(--primary);
+    }
+
+    .acc-hero-contact-item a {
+        color: #1e293b;
+        text-decoration: none;
+        transition: var(--transition);
+    }
+
+    .acc-hero-contact-item a:hover {
+        color: var(--primary);
+    }
+
+    /* Hero Right Side - Beautiful Image Box blending with light gradient backdrop */
+    .acc-hero-right {
+        animation: acc-slide-up 1s ease-out;
+    }
+
+    .acc-hero-img-box {
+        max-width: 100%;
+        margin: 0 auto;
+        border-radius: 0;
+        overflow: visible;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        position: relative;
+        z-index: 2;
+        animation: acc-float 6s ease-in-out infinite;
+    }
+
+    .acc-hero-img-box img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: var(--transition);
+    }
+
+    /* 2. LEGAL FRAMEWORK / WHAT IS IT */
+    .acc-legal-section {
+        background-color: var(--bg-white);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .acc-legal-card {
+        background-color: var(--primary-bg);
+        border-left: 5px solid var(--primary);
+        border-radius: 4px 16px 16px 4px;
+        padding: 25px 35px;
+        /* Compact padding */
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .acc-legal-icon {
+        background-color: rgba(122, 40, 40, 0.1);
+        padding: 12px;
+        border-radius: 10px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .acc-legal-icon svg {
+        width: 26px;
+        height: 26px;
+        color: var(--primary);
+    }
+
+    .acc-legal-text h3 {
+        color: var(--primary);
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+        font-weight: 700;
+    }
+
+    .acc-legal-text p {
+        font-size: 1rem;
+        color: var(--text-dark);
+    }
+
+    /* 3. PAIN POINTS / DIFFICULTIES */
+    .acc-difficulties-section {
+        background-color: var(--bg-light);
+    }
+
+    .acc-diff-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+    }
+
+    .acc-diff-left {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .acc-diff-card {
+        background-color: var(--bg-white);
+        border-radius: 12px;
+        padding: 16px 20px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        border: 1px solid transparent;
+    }
+
+    .acc-diff-card:hover {
+        transform: translateX(6px);
+        border-color: var(--border-color);
+        box-shadow: var(--shadow-md);
+    }
+
+    .acc-diff-num {
+        background-color: var(--primary-bg);
+        color: var(--primary);
+        font-weight: 800;
+        font-size: 1rem;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border: 1px solid var(--border-color);
+    }
+
+    .acc-diff-body h4 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        margin-bottom: 4px;
+    }
+
+    .acc-diff-body p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .acc-diff-right {
+        position: relative;
+    }
+
+    .acc-diff-img-wrapper {
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: var(--shadow-lg);
+        position: relative;
+        border: 3px solid var(--bg-white);
+    }
+
+    .acc-diff-img-wrapper img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: var(--transition);
+    }
+
+    .acc-diff-info-badge {
+        position: absolute;
+        bottom: -20px;
+        right: 20px;
+        background-color: var(--primary);
+        color: var(--text-light);
+        padding: 15px 20px;
+        border-radius: 12px;
+        box-shadow: var(--shadow-lg);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        max-width: 300px;
+        border-bottom: 4px solid var(--accent);
+    }
+
+    .acc-diff-info-badge svg {
+        flex-shrink: 0;
+        color: var(--accent);
+        width: 28px;
+        height: 28px;
+    }
+
+    .acc-diff-info-text {
+        font-weight: 700;
+        font-size: 0.95rem;
+        line-height: 1.3;
+    }
+
+    .acc-diff-info-sub {
+        font-weight: 400;
+        font-size: 0.75rem;
+        opacity: 0.85;
+    }
+
+    /* 4. ACC SERVICES (CONG VIEC ACC) */
+    .acc-services-section {
+        background-color: var(--bg-gray);
+    }
+
+    .acc-tax-landing-container .acc-services-grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        /* Force exactly 3 columns on desktop to avoid 4 and 2 card layout */
+        gap: 24px !important;
+    }
+
+    .acc-service-card {
+        background-color: var(--bg-white);
+        border-radius: 14px;
+        padding: 20px;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        border: 1px solid var(--border-color);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .acc-service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-md);
+        border-color: var(--primary-light);
+    }
+
+    .acc-service-card::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 4px;
+        background-color: var(--primary);
+        transition: var(--transition);
+    }
+
+    .acc-service-card:hover::after {
+        width: 100%;
+    }
+
+    .acc-service-icon-box {
+        width: 44px;
+        height: 44px;
+        background-color: var(--primary-bg);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary);
+        transition: var(--transition);
+        flex-shrink: 0;
+    }
+
+    .acc-service-icon-box svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .acc-service-card:hover .acc-service-icon-box {
+        background-color: var(--primary);
+        color: var(--text-light);
+        transform: scale(1.08);
+    }
+
+    .acc-service-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .acc-service-info h4 {
+        font-size: 1.05rem;
+        font-weight: 800;
+        color: var(--primary-dark);
+        margin-bottom: 6px;
+    }
+
+    .acc-service-info p {
+        color: var(--text-muted);
+        font-size: 0.88rem;
+        line-height: 1.5;
+    }
+
+    /* 5. DYNAMIC HORIZONTAL PROCESS CAROUSEL */
+    .acc-process-section {
+        background-color: var(--bg-white);
+    }
+
+    .acc-process-carousel-wrapper {
+        position: relative;
+        width: 100%;
+        margin-top: 20px;
+        padding: 5px 0;
+        overflow: hidden;
+    }
+
+    /* Linear Gradient overlays on side transitions */
+    .acc-process-carousel-wrapper::before,
+    .acc-process-carousel-wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        width: 80px;
+        height: 100%;
+        z-index: 5;
+        pointer-events: none;
+    }
+
+    .acc-process-carousel-wrapper::before {
+        left: 0;
+        background: linear-gradient(to right, var(--bg-white), transparent);
+    }
+
+    .acc-process-carousel-wrapper::after {
+        right: 0;
+        background: linear-gradient(to left, var(--bg-white), transparent);
+    }
+
+    .acc-process-carousel {
+        display: flex;
+        gap: 25px;
+        overflow-x: scroll;
+        overflow-y: hidden !important;
+        /* Ngăn chặn tuyệt đối thanh cuộn dọc xuất hiện trong quá trình tải font/ảnh */
+        white-space: nowrap;
+        padding: 15px;
+        cursor: grab;
+        user-select: none;
+        scroll-behavior: auto;
+
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
+    }
+
+    .acc-process-carousel::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: transparent !important;
+    }
+
+    .acc-process-carousel:active {
+        cursor: grabbing;
+    }
+
+    .acc-process-card {
+        flex: 0 0 300px;
+        /* Slightly reduced width */
+        background-color: var(--bg-light);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 25px;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        white-space: normal;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .acc-process-card:hover {
+        box-shadow: var(--shadow-md);
+        border-color: var(--accent);
+        transform: translateY(-4px);
+        background-color: var(--bg-white);
+    }
+
+    .acc-process-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    .acc-process-icon {
+        width: 44px;
+        height: 44px;
+        background-color: var(--primary-bg);
+        color: var(--primary);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+    }
+
+    .acc-process-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .acc-process-card:hover .acc-process-icon {
+        background-color: var(--primary);
+        color: var(--text-light);
+    }
+
+    .acc-process-num {
+        font-size: 1.8rem;
+        font-weight: 900;
+        color: rgba(122, 40, 40, 0.12);
+        line-height: 1;
+        transition: var(--transition);
+    }
+
+    .acc-process-card:hover .acc-process-num {
+        color: var(--accent);
+    }
+
+    .acc-process-card h4 {
+        font-size: 1.15rem;
+        font-weight: 800;
+        color: var(--primary-dark);
+        margin-bottom: 8px;
+    }
+
+    .acc-process-card p {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+
+    /* 6. SUBJECTS & PENALTIES (MỨC PHẠT & ĐỐI TƯỢNG) */
+    .acc-penalty-section {
+        background-color: var(--bg-light);
+    }
+
+    .acc-penalty-grid {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 30px;
+    }
+
+    .acc-subjects-card {
+        background-color: var(--bg-white);
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border-color);
+    }
+
+    .acc-subjects-card h3 {
+        color: var(--primary);
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .acc-subjects-card h3 svg {
+        color: var(--accent);
+        width: 22px;
+        height: 22px;
+    }
+
+    .acc-subject-group {
+        margin-bottom: 20px;
+    }
+
+    .acc-subject-group:last-child {
+        margin-bottom: 0;
+    }
+
+    .acc-subject-group h4 {
+        font-size: 1.05rem;
+        color: var(--primary-dark);
+        margin-bottom: 8px;
+        border-left: 3px solid var(--primary);
+        padding-left: 10px;
+    }
+
+    .acc-subject-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .acc-subject-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        font-size: 0.92rem;
+    }
+
+    .acc-subject-list li svg {
+        color: var(--primary);
+        margin-top: 4px;
+        flex-shrink: 0;
+    }
+
+    .acc-table-card {
+        background-color: var(--bg-white);
+        border-radius: 16px;
+        padding: 30px;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border-color);
+    }
+
+    .acc-table-card h3 {
+        color: var(--primary);
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .acc-table-card h3 svg {
+        color: var(--danger);
+        width: 22px;
+        height: 22px;
+    }
+
+    .acc-table-subtitle {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        margin-bottom: 15px;
+    }
+
+    .acc-table-wrapper {
+        overflow-x: auto;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+    }
+
+    .acc-table-wrapper::-webkit-scrollbar {
+        height: 6px;
+    }
+
+    .acc-table-wrapper::-webkit-scrollbar-thumb {
+        background-color: var(--primary-light);
+        border-radius: 3px;
+    }
+
+    .acc-table-wrapper::-webkit-scrollbar-track {
+        background-color: var(--bg-gray);
+    }
+
+    .acc-penalty-table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: left;
+        font-size: 0.9rem;
+    }
+
+    .acc-penalty-table th {
+        background-color: var(--primary);
+        color: var(--text-light);
+        padding: 10px 14px;
+        font-weight: 700;
+    }
+
+    .acc-penalty-table td {
+        padding: 10px 14px;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .acc-penalty-table tr:nth-child(even) {
+        background-color: var(--bg-gray);
+    }
+
+    .acc-penalty-table tr:hover {
+        background-color: var(--primary-bg);
+    }
+
+    .acc-penalty-table tr.acc-danger-row {
+        background-color: #ffebee;
+    }
+
+    .acc-penalty-table tr.acc-danger-row td {
+        color: var(--danger);
+        font-weight: 500;
+    }
+
+    .acc-alert-box {
+        margin-top: 15px;
+        background-color: #fff3e0;
+        border-left: 4px solid var(--warning);
+        border-radius: 4px;
+        padding: 12px 18px;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .acc-alert-box svg {
+        color: var(--warning);
+        margin-top: 2px;
+        flex-shrink: 0;
+    }
+
+    .acc-alert-box p {
+        font-size: 0.8rem;
+        color: #e65100;
+        font-weight: 500;
+        line-height: 1.4;
+    }
+
+    /* 7. PREPARATION & CTA SECTION */
+    .acc-cta-section {
+        position: relative;
+        background: linear-gradient(135deg, rgba(87, 26, 26, 0.96) 0%, rgba(122, 40, 40, 0.92) 100%),
+            url('https://congtyluatacc.vn/wp-content/uploads/2026/06/quyet-toan-thue-scaled.jpg') center/cover no-repeat;
+        color: var(--text-light);
+        padding: 60px 20px;
+        /* Reduced from 80px */
+    }
+
+    .acc-cta-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 40px;
+        align-items: center;
+    }
+
+    .acc-cta-left h2 {
+        font-size: 2.1rem;
+        font-weight: 900;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
+
+    .acc-cta-left h2 span {
+        color: var(--accent);
+    }
+
+    .acc-cta-left p {
+        font-size: 1.05rem;
+        margin-bottom: 25px;
+        opacity: 0.9;
+    }
+
+    .acc-doc-checklist {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .acc-doc-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1rem;
+    }
+
+    .acc-doc-icon-wrapper {
+        color: var(--accent);
+        background-color: rgba(255, 255, 255, 0.1);
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .acc-cta-right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 35px;
+        border-radius: 16px;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        text-align: center;
+    }
+
+    .acc-cta-right h3 {
+        font-size: 1.3rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+        color: var(--accent);
+        text-transform: uppercase;
+    }
+
+    .acc-cta-btn-group {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .acc-cta-btn-group .acc-btn {
+        width: 100%;
+    }
+
+    /* 8. FAQs ACCORDION */
+    .acc-faq-section {
+        background-color: var(--bg-white);
+    }
+
+    .acc-faq-list {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .acc-faq-item {
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: var(--transition);
+    }
+
+    .acc-faq-item:hover {
+        border-color: var(--primary-light);
+    }
+
+    .acc-faq-header {
+        background-color: var(--bg-light);
+        padding: 16px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+        transition: var(--transition);
+    }
+
+    .acc-faq-header h4 {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+        padding-right: 15px;
+    }
+
+    .acc-faq-icon {
+        color: var(--primary);
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .acc-faq-body {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        background-color: var(--bg-white);
+    }
+
+    .acc-faq-content {
+        padding: 18px 20px;
+        font-size: 0.95rem;
+        color: var(--text-dark);
+        border-top: 1px solid var(--border-color);
+        line-height: 1.55;
+    }
+
+    /* Active FAQ state */
+    .acc-faq-item.active {
+        border-color: var(--primary);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .acc-faq-item.active .acc-faq-header {
+        background-color: var(--primary-bg);
+    }
+
+    .acc-faq-item.active .acc-faq-icon svg {
+        transform: rotate(180deg);
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 1024px) {
+        .acc-hero-container {
+            padding: 50px 0 40px 0 !important;
+        }
+
+        .acc-hero-wave-bg {
+            display: none !important;
+        }
+
+        .acc-hero-right {
+            background-color: #edf4fc !important;
+            border-radius: 20px !important;
+            padding: 30px 20px !important;
+            width: 100% !important;
+            max-width: 480px !important;
+            margin: 0 auto !important;
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.01) !important;
+        }
+
+        .acc-hero-img-box {
+            animation: none !important;
+            /* Disable floating stability on mobile */
+        }
+
+        .acc-hero-title {
+            font-size: 2.3rem;
+            justify-content: center;
+        }
+
+        .acc-hero-content {
+            grid-template-columns: 1fr !important;
+            gap: 30px !important;
+            text-align: center !important;
+        }
+
+        .acc-hero-badge {
+            justify-content: center;
+        }
+
+        .acc-hero-benefits {
+            justify-content: center;
+        }
+
+        .acc-hero-btn-group {
+            justify-content: center;
+        }
+
+        .acc-hero-contact-quick {
+            justify-content: center;
+        }
+
+        .acc-tax-landing-container .acc-services-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            /* Exactly 2 columns on tablets/landscape mobile */
+            gap: 20px !important;
+        }
+
+        .acc-diff-grid {
+            grid-template-columns: 1fr;
+            gap: 35px;
+        }
+
+        .acc-diff-img-wrapper {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .acc-penalty-grid {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .acc-cta-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .acc-tax-section {
+            padding: 35px 20px !important;
+        }
+
+        .acc-tax-section-title {
+            font-size: 1.65rem;
+        }
+
+        .acc-hero-container {
+            padding: 40px 0 !important;
+        }
+
+        .acc-hero-title {
+            font-size: 1.8rem;
+            justify-content: center;
+        }
+
+        .acc-hero-sub {
+            font-size: 1.05rem;
+            margin-bottom: 18px;
+        }
+
+        .acc-hero-benefits {
+            grid-template-columns: 1fr;
+            gap: 12px;
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto 20px auto;
+        }
+
+        .acc-hero-btn-group {
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+        }
+
+        .acc-hero-btn-group .acc-btn {
+            width: 100%;
+        }
+
+        .acc-hero-contact-quick {
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid rgba(122, 40, 40, 0.15);
+        }
+
+        .acc-legal-card {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px 15px;
+        }
+
+        .acc-legal-icon {
+            margin-bottom: 8px;
+        }
+
+        .acc-process-card {
+            flex: 0 0 260px;
+            padding: 20px;
+        }
+
+        .acc-process-carousel {
+            gap: 15px;
+            padding: 5px;
+        }
+
+        .acc-process-carousel-wrapper::before,
+        .acc-process-carousel-wrapper::after {
+            width: 30px;
+        }
+
+        .acc-diff-info-badge {
+            position: relative;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            transform: none;
+            margin: 15px auto 0 auto;
+            width: 100%;
+            max-width: 100%;
+            box-shadow: var(--shadow-md);
+        }
+
+        .acc-subjects-card {
+            padding: 20px;
+        }
+
+        .acc-table-card {
+            padding: 20px;
+        }
+
+        .acc-cta-right {
+            padding: 25px 15px;
+        }
+
+        .acc-section-cta-wrap {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .acc-section-cta-wrap .acc-btn {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .acc-tax-landing-container .acc-services-grid {
+            grid-template-columns: 1fr !important;
+            /* Force exactly 1 column on phones */
+            gap: 15px !important;
+        }
+
+        .acc-hero-title {
+            font-size: 1.6rem;
+            justify-content: center;
+        }
+
+        .acc-hero-badge {
+            font-size: 0.72rem;
+            padding: 5px 12px;
+            letter-spacing: 0.5px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .acc-tax-section {
+            padding: 25px 12px !important;
+        }
+
+        .acc-hero-container {
+            padding: 35px 0 25px 0 !important;
+        }
+
+        .acc-hero-right {
+            padding: 20px 15px !important;
+            border-radius: 14px !important;
+        }
+    }
+</style>
+
+<div class="acc-tax-landing-container">
+
+    <!-- 1. HERO BANNER (COMPACT, ATTRACTIVE, REORGANIZED BENEFITS) -->
+    <div class="acc-hero-container">
+        <!-- Curved Wave Background Shape -->
+        <div class="acc-hero-wave-bg">
+            <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
+                <path d="M520,0 C580,300 380,700 440,1000 L1000,1000 L1000,0 Z" fill="#edf4fc" />
+            </svg>
+        </div>
+
+        <div class="acc-hero-content">
+            <div class="acc-hero-left">
+                <div class="acc-hero-badge">
+                    <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 3v17M12 5l-8 3 8 3 8-3-8-3zM4 14c0 3 3 4 8 4s8-1 8-4M12 21h4M8 21h8" />
+                    </svg>
+                    <span>CÔNG TY LUẬT ACC - ĐỒNG HÀNH PHÁP LÝ CÙNG BẠN</span>
+                </div>
+                <h1 class="acc-hero-title">
+                    Dịch Vụ Quyết Toán Thuế TNCN <span class="acc-hero-title-highlight">Nhanh Chóng - Chuẩn Xác
+                        100%</span>
+                </h1>
+                <p class="acc-hero-sub">
+                    Giảm áp lực mỗi mùa quyết toán thuế. Hỗ trợ rà soát chứng từ, tối ưu số thuế được hoàn và hạn chế
+                    tối đa rủi ro xử phạt hành chính do chậm nộp.
+                </p>
+
+                <div class="acc-hero-benefits">
+                    <div class="acc-hero-benefit-item">
+                        <div class="acc-hero-benefit-icon-wrapper">
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Chính xác tuyệt đối</strong>
+                            <p style="font-size: 0.8rem; opacity: 0.85; font-weight: 300;">Loại bỏ hoàn toàn lỗi khai
+                                sai dữ liệu</p>
+                        </div>
+                    </div>
+                    <div class="acc-hero-benefit-item">
+                        <div class="acc-hero-benefit-icon-wrapper">
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Tối ưu tiền hoàn thuế</strong>
+                            <p style="font-size: 0.8rem; opacity: 0.85; font-weight: 300;">Rà soát và lấy lại tối đa
+                                thuế nộp thừa</p>
+                        </div>
+                    </div>
+                    <div class="acc-hero-benefit-item">
+                        <div class="acc-hero-benefit-icon-wrapper">
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>Hỗ trợ online 100%</strong>
+                            <p style="font-size: 0.8rem; opacity: 0.85; font-weight: 300;">Kê khai và nộp eTax nhanh,
+                                không cần đi lại</p>
+                        </div>
+                    </div>
+                    <div class="acc-hero-benefit-item">
+                        <div class="acc-hero-benefit-icon-wrapper">
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <strong>An tâm tuyệt đối</strong>
+                            <p style="font-size: 0.8rem; opacity: 0.85; font-weight: 300;">Không lo trễ hạn, phạt hành
+                                chính</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acc-hero-btn-group">
+                    <a href="tel:19003330" class="acc-btn acc-btn-accent">
+                        <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        <span>Hotline: 1900 3330</span>
                     </a>
-                    <a href="https://zalo.me/2171133625094125529" target="_blank" class="acc-btn acc-btn-zalo">
-                        Chat Zalo Ngay
+                    <a href="https://zalo.me/2171133625094125529" target="_blank" rel="noopener noreferrer"
+                        class="acc-btn acc-btn-zalo">
+                        <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>Tư vấn qua Zalo</span>
                     </a>
                 </div>
-            </div>
-            <div class="acc-anim acc-hero-img-box">
-                <img src="https://congtyluatacc.vn/wp-content/uploads/2026/06/quyet-toan-thue-2-scaled.jpg" alt="Dịch vụ quyết toán thuế ACC">
-            </div>
-        </div>
-    </section>
 
-    <!-- 2. PAIN POINTS -->
-    <section class="acc-pain acc-container">
-        <h2 class="acc-title-sec acc-anim">Bạn Đang Đau Đầu Vì Thuế?</h2>
-        <div class="acc-grid acc-grid-3 mt-4">
-            <div class="acc-card-pain acc-anim">
-                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
-                <h3>Trễ Hạn Nộp Phạt Cao</h3>
-                <p>Nộp chậm hồ sơ có thể bị phạt lên đến 12.5 triệu đồng. Không nắm rõ thời hạn khiến bạn mất tiền oan.</p>
+                <div class="acc-hero-contact-quick">
+                    <div class="acc-hero-contact-item">
+                        <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        <span>Di động: <a href="tel:0846967979">084.696.7979</a></span>
+                    </div>
+                    <div class="acc-hero-contact-item">
+                        <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                            </path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>Email: <a href="mailto:info@congtyluatacc.vn">info@congtyluatacc.vn</a></span>
+                    </div>
+                </div>
             </div>
-            <div class="acc-card-pain acc-anim" style="transition-delay: 0.1s;">
-                <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                <h3>Hồ Sơ Rất Phức Tạp</h3>
-                <p>Khó tổng hợp thu nhập từ nhiều công ty. Thiếu chứng từ khấu trừ, không biết cách tính giảm trừ gia cảnh.</p>
-            </div>
-            <div class="acc-card-pain acc-anim" style="transition-delay: 0.2s;">
-                <svg viewBox="0 0 24 24"><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42A8.962 8.962 0 0 0 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9a8.994 8.994 0 0 0 7.03-14.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
-                <h3>Mất Nhiều Thời Gian</h3>
-                <p>Sai sót khi tự kê khai eTax khiến hồ sơ bị trả về liên tục. Phải đi lại giải trình với cơ quan thuế.</p>
-            </div>
-        </div>
-        
-        <div class="acc-alert acc-anim">
-            <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
-            <div>
-                <p>Cảnh báo: Không quyết toán thuế hoặc nộp chậm sau hạn chót sẽ bị xử phạt hành chính từ Cảnh cáo đến 12.500.000 VNĐ tùy mức độ vi phạm (Theo NĐ 125/2020/NĐ-CP).</p>
-            </div>
-        </div>
-    </section>
 
-    <!-- 3. SOLUTION / ACC SERVICES -->
-    <section class="acc-solution">
-        <div class="acc-container acc-grid acc-grid-2">
-            <div class="acc-anim">
-                <img src="https://congtyluatacc.vn/wp-content/uploads/2026/06/quyet-toan-thue-scaled.jpg" alt="Nhân viên làm việc" style="box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <div class="acc-hero-right">
+                <div class="acc-hero-img-box">
+                    <img src="https://congtyluatacc.vn/wp-content/uploads/2026/06/3d-render-tax-payment-financial-business-concept-removebg-preview.png"
+                        alt="Dịch vụ quyết toán thuế thu nhập cá nhân ACC">
+                </div>
             </div>
-            <div class="acc-anim" style="padding-left: 20px;">
-                <h2 class="acc-title-main" style="font-size: 2.2rem;">ACC Sẽ Làm Gì Giúp Bạn?</h2>
-                <p class="acc-subtitle">Với dịch vụ trọn gói, chúng tôi đại diện bạn xử lý 100% hồ sơ từ A-Z một cách chuẩn xác nhất.</p>
-                
-                <ul class="acc-feature-list">
-                    <li>
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <strong>Kiểm tra toàn diện:</strong> Rà soát tình trạng MST, thu nhập phát sinh và chứng từ khấu trừ thuế.
+        </div>
+    </div>
+
+    <!-- 2. LEGAL FRAMEWORK / WHAT IS IT -->
+    <div class="acc-tax-section acc-legal-section acc-reveal">
+        <div class="acc-legal-card">
+            <div class="acc-legal-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="m14 13-5-5M6 16l-4 4M8 14l-3-3M16 10l3 3M19 3l2 2-7 7-2-2 7-7zM14 6l4 4" />
+                </svg>
+            </div>
+            <div class="acc-legal-text">
+                <h3>Hiểu đúng về Quyết toán Thuế TNCN</h3>
+                <p>
+                    Căn cứ theo <strong>Khoản 10 Điều 3 Luật Quản lý thuế 2019</strong>, quyết toán thuế là việc xác
+                    định lại chính xác số thuế phải nộp trong kỳ tính thuế hoặc tại thời điểm phát sinh, chấm dứt nghĩa
+                    vụ thuế. Đây là nghĩa vụ pháp lý quan trọng của công dân đồng thời là cơ sở pháp lý bắt buộc để hoàn
+                    lại phần tiền thuế đã đóng dư trong năm tài chính.
+                </p>
+            </div>
+        </div>
+
+        <!-- CTA button added for this section -->
+        <div class="acc-section-cta-wrap">
+            <a href="tel:19003330" class="acc-btn acc-btn-primary">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                </svg>
+                <span>Nhận Tư Vấn Luật Thuế Miễn Phí: 1900 3330</span>
+            </a>
+            <a href="https://zalo.me/2171133625094125529" target="_blank" rel="noopener noreferrer"
+                class="acc-btn acc-btn-zalo">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Chat Zalo tư vấn pháp lý</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 3. PAIN POINTS / DIFFICULTIES -->
+    <div class="acc-tax-section acc-difficulties-section acc-reveal">
+        <div class="acc-tax-section-title-wrap">
+            <span class="acc-tax-section-tag">Khó khăn thường gặp</span>
+            <h2 class="acc-tax-section-title">Tại sao tự quyết toán thuế lại phức tạp?</h2>
+            <p class="acc-tax-section-desc">Hầu hết cá nhân tự thực hiện kê khai thuế gặp các trở ngại lớn về thủ tục do
+                thay đổi chính sách liên tục.</p>
+        </div>
+
+        <div class="acc-diff-grid">
+            <div class="acc-diff-left">
+                <div class="acc-diff-card">
+                    <div class="acc-diff-num">01</div>
+                    <div class="acc-diff-body">
+                        <h4>Không xác định được nghĩa vụ kê khai</h4>
+                        <p>Lúng túng không biết trường hợp của mình có bắt buộc tự quyết toán hay thuộc diện ủy quyền
+                            cho công ty quyết toán thay.</p>
+                    </div>
+                </div>
+
+                <div class="acc-diff-card">
+                    <div class="acc-diff-num">02</div>
+                    <div class="acc-diff-body">
+                        <h4>Thu nhập từ nhiều nguồn phức tạp</h4>
+                        <p>Gặp khó khăn lớn khi tổng hợp thu nhập, thiếu hoặc thất lạc chứng từ khấu trừ thuế (mẫu
+                            07/TNCN) do các công ty cũ cấp.</p>
+                    </div>
+                </div>
+
+                <div class="acc-diff-card">
+                    <div class="acc-diff-num">03</div>
+                    <div class="acc-diff-body">
+                        <h4>Tính toán giảm trừ gia cảnh sai lệch</h4>
+                        <p>Hiểu sai quy định về tính giảm trừ gia cảnh, hồ sơ người phụ thuộc, dẫn đến sai lệch dữ liệu
+                            thuế và tính sai số thuế được hoàn.</p>
+                    </div>
+                </div>
+
+                <div class="acc-diff-card">
+                    <div class="acc-diff-num">04</div>
+                    <div class="acc-diff-body">
+                        <h4>Lỗi kỹ thuật trên hệ thống Thuế điện tử</h4>
+                        <p>Điền sai biểu mẫu trực tuyến hoặc sai mã cơ quan thuế quản lý trực tiếp dẫn đến hồ sơ bị hệ
+                            thống trả về nhiều lần.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-diff-right">
+                <div class="acc-diff-img-wrapper">
+                    <img src="https://congtyluatacc.vn/wp-content/uploads/2026/06/quyet-toan-thue-3-scaled.jpg"
+                        alt="Chuyên viên ACC rà soát hồ sơ quyết toán thuế">
+                    <div class="acc-diff-info-badge">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                            <line x1="12" y1="9" x2="12" y2="13"></line>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        <div class="acc-diff-info-text">
+                            Hơn 45% hồ sơ tự nộp<br>
+                            <span class="acc-diff-info-sub">bị cơ quan thuế trả lại do kê khai sai thông tin.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA button added for this section -->
+        <div class="acc-section-cta-wrap">
+            <a href="https://zalo.me/2171133625094125529" target="_blank" rel="noopener noreferrer"
+                class="acc-btn acc-btn-zalo">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Nhờ ACC Hỗ Trợ Rà Soát Hồ Sơ Miễn Phí</span>
+            </a>
+            <a href="tel:0846967979" class="acc-btn acc-btn-outline-dark">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                </svg>
+                <span>Gọi Di động: 084.696.7979</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 4. SERVICES WORK BY ACC -->
+    <div class="acc-tax-section acc-services-section acc-reveal">
+        <div class="acc-tax-section-title-wrap">
+            <span class="acc-tax-section-tag">Công việc của ACC</span>
+            <h2 class="acc-tax-section-title">ACC Hỗ Trợ Những Gì Cho Bạn?</h2>
+            <p class="acc-tax-section-desc">Chúng tôi thực hiện dịch vụ trọn gói từ A-Z, đại diện làm việc trực tiếp với
+                cơ quan Thuế để bảo vệ tối đa quyền lợi của khách hàng.</p>
+        </div>
+
+        <div class="acc-services-grid">
+            <div class="acc-service-card">
+                <div class="acc-service-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="16" rx="2" ry="2"></rect>
+                        <line x1="7" y1="8" x2="17" y2="8"></line>
+                        <line x1="7" y1="12" x2="17" y2="12"></line>
+                        <line x1="7" y1="16" x2="13" y2="16"></line>
+                    </svg>
+                </div>
+                <div class="acc-service-info">
+                    <h4>Kiểm tra Mã số thuế</h4>
+                    <p>Tra cứu tình trạng MST cá nhân, kiểm tra trạng thái kê khai lịch sử thuế trên hệ thống dữ liệu
+                        điện tử quốc gia.</p>
+                </div>
+            </div>
+
+            <div class="acc-service-card">
+                <div class="acc-service-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                </div>
+                <div class="acc-service-info">
+                    <h4>Rà soát chứng từ</h4>
+                    <p>Kiểm tra tính hợp lệ của các chứng từ khấu trừ thuế, hợp đồng lao động, thư xác nhận thu nhập năm
+                        của khách hàng.</p>
+                </div>
+            </div>
+
+            <div class="acc-service-card">
+                <div class="acc-service-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                        <line x1="8" y1="6" x2="16" y2="6"></line>
+                        <line x1="16" y1="14" x2="16" y2="18"></line>
+                        <line x1="8" y1="14" x2="8" y2="14.01"></line>
+                        <line x1="12" y1="14" x2="12" y2="14.01"></line>
+                    </svg>
+                </div>
+                <div class="acc-service-info">
+                    <h4>Tính số thuế hoàn/nộp thêm</h4>
+                    <p>Tính toán chính xác theo các quy định mới nhất số tiền thuế đóng thừa được hoàn hoặc số thuế nộp
+                        thiếu cần truy thu.</p>
+                </div>
+            </div>
+
+            <div class="acc-service-card">
+                <div class="acc-service-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 20h9"></path>
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                </div>
+                <div class="acc-service-info">
+                    <h4>Kê khai & Lập hồ sơ</h4>
+                    <p>Điền tờ khai quyết toán thuế TNCN theo đúng biểu mẫu pháp luật quy định, chính xác trên phần mềm
+                        thuế điện tử.</p>
+                </div>
+            </div>
+
+            <div class="acc-service-card">
+                <div class="acc-service-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"></path>
+                    </svg>
+                </div>
+                <div class="acc-service-info">
+                    <h4>Đại diện nộp hồ sơ</h4>
+                    <p>Hỗ trợ nộp hồ sơ online hoặc trực tiếp đại diện khách hàng giải trình cơ quan thuế khi có yêu cầu
+                        bổ sung thông tin.</p>
+                </div>
+            </div>
+
+            <div class="acc-service-card">
+                <div class="acc-service-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <div class="acc-service-info">
+                    <h4>Tư vấn tối ưu lâu dài</h4>
+                    <p>Tư vấn các biện pháp giảm trừ gia cảnh, hồ sơ người phụ thuộc để tối ưu số thuế phải nộp cho các
+                        năm tiếp theo.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA button added for this section -->
+        <div class="acc-section-cta-wrap">
+            <a href="tel:19003330" class="acc-btn acc-btn-accent">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                </svg>
+                <span>Nhận Báo Giá Dịch Vụ Trọn Gói: 1900 3330</span>
+            </a>
+            <a href="https://zalo.me/2171133625094125529" target="_blank" rel="noopener noreferrer"
+                class="acc-btn acc-btn-zalo">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Yêu cầu báo giá qua Zalo</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 5. HORIZONTAL AUTO-SCROLL TIMELINE SECTION (CAROUSEL) -->
+    <div class="acc-tax-section acc-process-section acc-reveal">
+        <div class="acc-tax-section-title-wrap">
+            <span class="acc-tax-section-tag">Quy trình chuyên nghiệp</span>
+            <h2 class="acc-tax-section-title">Quy Trình Dịch Vụ Quyết Toán Thuế</h2>
+            <p class="acc-tax-section-desc">Hệ thống trơn tru và tự động hóa. Rê chuột vào thẻ để tạm dừng xem thông tin
+                chi tiết.</p>
+        </div>
+
+        <div class="acc-process-carousel-wrapper">
+            <div class="acc-process-carousel" id="accProcessCarousel">
+
+                <div class="acc-process-card">
+                    <div class="acc-process-card-header">
+                        <div class="acc-process-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                        <span class="acc-process-num">01</span>
+                    </div>
+                    <h4>Bước 1: Tư vấn & Tiếp nhận</h4>
+                    <p>ACC tiếp nhận thông tin thu nhập, chứng từ trực tuyến qua Zalo/Email và đưa ra định hướng xử lý
+                        hồ sơ phù hợp nhất.</p>
+                </div>
+
+                <div class="acc-process-card">
+                    <div class="acc-process-card-header">
+                        <div class="acc-process-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <path d="m9 15 2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <span class="acc-process-num">02</span>
+                    </div>
+                    <h4>Bước 2: Kiểm tra dữ liệu</h4>
+                    <p>Thực hiện kiểm tra thực tế dữ liệu của khách hàng đối chiếu với thông tin được hiển thị trực
+                        tuyến trên cổng Thuế điện tử eTax.</p>
+                </div>
+
+                <div class="acc-process-card">
+                    <div class="acc-process-card-header">
+                        <div class="acc-process-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
+                                <rect x="4" y="2" width="16" height="20" rx="2" ry="2"></rect>
+                                <line x1="8" y1="6" x2="16" y2="6"></line>
+                                <line x1="16" y1="14" x2="16" y2="18"></line>
+                                <line x1="8" y1="14" x2="8" y2="14.01"></line>
+                                <line x1="12" y1="14" x2="12" y2="14.01"></line>
+                            </svg>
+                        </div>
+                        <span class="acc-process-num">03</span>
+                    </div>
+                    <h4>Bước 3: Lập tờ khai thuế</h4>
+                    <p>Tính toán chính xác số thuế hoàn trả hoặc số tiền thuế nộp thêm. Tiến hành soạn lập tờ khai quyết
+                        toán thuế TNCN.</p>
+                </div>
+
+                <div class="acc-process-card">
+                    <div class="acc-process-card-header">
+                        <div class="acc-process-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
+                                <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z"></path>
+                            </svg>
+                        </div>
+                        <span class="acc-process-num">04</span>
+                    </div>
+                    <h4>Bước 4: Nộp hồ sơ trực tuyến</h4>
+                    <p>Hỗ trợ nộp tờ khai và các chứng từ đính kèm thông qua cổng dịch vụ công trực tuyến của Tổng cục
+                        Thuế nhanh gọn.</p>
+                </div>
+
+                <div class="acc-process-card">
+                    <div class="acc-process-card-header">
+                        <div class="acc-process-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <span class="acc-process-num">05</span>
+                    </div>
+                    <h4>Bước 5: Theo dõi hoàn thuế</h4>
+                    <p>Theo dõi sát sao tiến trình xử lý hồ sơ từ cơ quan Thuế quản lý, thông báo cập nhật kết quả nhận
+                        tiền hoàn cho bạn.</p>
+                </div>
+
+                <div class="acc-process-card">
+                    <div class="acc-process-card-header">
+                        <div class="acc-process-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" style="width: 22px; height: 22px;">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <span class="acc-process-num">06</span>
+                    </div>
+                    <h4>Bước 6: Hỗ trợ sau thuế</h4>
+                    <p>Bàn giao kết quả quyết toán hoàn tất, tiếp tục hỗ trợ giải đáp các thắc mắc về thuế TNCN phát
+                        sinh sau kỳ kê khai.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CTA button added for this section -->
+        <div class="acc-section-cta-wrap">
+            <a href="https://zalo.me/2171133625094125529" target="_blank" rel="noopener noreferrer"
+                class="acc-btn acc-btn-zalo">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Nhận Tư Vấn Để Bắt Đầu Quy Trình Quyết Toán</span>
+            </a>
+            <a href="tel:19003330" class="acc-btn acc-btn-outline-dark">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                </svg>
+                <span>Gọi Hotline: 1900 3330</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 6. SUBJECTS & PENALTIES TABLE -->
+    <div class="acc-tax-section acc-penalty-section acc-reveal">
+        <div class="acc-tax-section-title-wrap">
+            <span class="acc-tax-section-tag">Quy định pháp lý</span>
+            <h2 class="acc-tax-section-title">Đối Tượng Kê Khai & Mức Phạt Chậm Nộp</h2>
+            <p class="acc-tax-section-desc">Quyết toán thuế TNCN là nghĩa vụ bắt buộc. Việc nộp chậm hồ sơ sẽ bị xử phạt
+                vi phạm hành chính với khung hình phạt rất cao.</p>
+        </div>
+
+        <div class="acc-penalty-grid">
+            <div class="acc-subjects-card">
+                <h3>
+                    <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path
+                            d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75">
+                        </path>
+                    </svg>
+                    <span>Đối tượng bắt buộc quyết toán</span>
+                </h3>
+
+                <div class="acc-subject-group">
+                    <h4>Cá nhân cư trú:</h4>
+                    <ul class="acc-subject-list">
+                        <li>
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                style="width: 15px; height: 15px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Có thu nhập phát sinh từ tiền lương, tiền công tại Việt Nam và nước ngoài thuộc diện
+                                phải nộp thêm thuế.</span>
+                        </li>
+                        <li>
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                style="width: 15px; height: 15px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Có số thuế nộp thừa đề nghị hoàn hoặc bù trừ vào kỳ tính thuế tiếp theo.</span>
+                        </li>
+                        <li>
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                style="width: 15px; height: 15px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Có mặt tại Việt Nam dưới 183 ngày trong năm đầu tiên nhưng tính liên tục 12 tháng từ
+                                ngày đầu tiên đạt trên 183 ngày.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="acc-subject-group">
+                    <h4>Cá nhân không cư trú:</h4>
+                    <ul class="acc-subject-list">
+                        <li>
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                style="width: 15px; height: 15px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Người nước ngoài kết thúc hợp đồng làm việc tại Việt Nam bắt buộc thực hiện quyết toán
+                                thuế trước khi xuất cảnh.</span>
+                        </li>
+                        <li>
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                style="width: 15px; height: 15px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            <span>Cá nhân có thu nhập chịu thuế phát sinh tại Việt Nam nhưng chưa được khấu trừ.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 15px; font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
+                    * Lưu ý: Luật Thuế TNCN mới có hiệu lực từ ngày 01/07/2026, áp dụng trực tiếp cho các kỳ quyết toán
+                    năm.
+                </div>
+            </div>
+
+            <div class="acc-table-card">
+                <h3>
+                    <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path>
+                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    <span>Mức phạt chậm nộp hồ sơ thuế</span>
+                </h3>
+                <p class="acc-table-subtitle">Theo Nghị định 125/2020/NĐ-CP (Sửa đổi bởi NĐ 310/2025/NĐ-CP):</p>
+
+                <div class="acc-table-wrapper">
+                    <table class="acc-penalty-table">
+                        <thead>
+                            <tr>
+                                <th>Thời gian nộp chậm</th>
+                                <th>Mức phạt Cá nhân</th>
+                                <th>Mức phạt Tổ chức</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Từ 01 – 05 ngày (có giảm nhẹ)</td>
+                                <td><strong>Cảnh cáo</strong></td>
+                                <td><strong>Cảnh cáo</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Từ 01 – 30 ngày</td>
+                                <td>500.000đ – 1.250.000đ</td>
+                                <td>1.000.000đ – 2.500.000đ</td>
+                            </tr>
+                            <tr>
+                                <td>Từ 31 – 60 ngày</td>
+                                <td>1.250.000đ – 2.000.000đ</td>
+                                <td>2.500.000đ – 4.000.000đ</td>
+                            </tr>
+                            <tr>
+                                <td>Từ 61 – 90 ngày</td>
+                                <td>2.000.000đ – 3.750.000đ</td>
+                                <td>4.000.000đ – 7.500.000đ</td>
+                            </tr>
+                            <tr class="acc-danger-row">
+                                <td>Trên 90 ngày (không nộp thuế thêm)</td>
+                                <td>2.000.000đ – 3.750.000đ</td>
+                                <td>4.000.000đ – 7.500.000đ</td>
+                            </tr>
+                            <tr class="acc-danger-row">
+                                <td>Trên 90 ngày (có phát sinh nộp thuế)</td>
+                                <td>3.750.000đ – 6.250.000đ</td>
+                                <td>7.500.000đ – 12.500.000đ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="acc-alert-box">
+                    <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px;">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="12" y1="8" x2="12" y2="12"></line>
+                        <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                    </svg>
+                    <p>
+                        <strong>Biện pháp khắc phục:</strong> Ngoài phạt tiền, cá nhân buộc phải nộp đầy đủ hồ sơ khai
+                        thuế và đóng đủ số tiền thuế nộp chậm kèm tiền lãi chậm nộp vào ngân sách nhà nước.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA button added for this section -->
+        <div class="acc-section-cta-wrap">
+            <a href="tel:19003330" class="acc-btn acc-btn-primary">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                </svg>
+                <span>Hỗ Trợ Tránh Phạt Chậm Nộp: Gọi 1900 3330</span>
+            </a>
+            <a href="https://zalo.me/2171133625094125529" target="_blank" rel="noopener noreferrer"
+                class="acc-btn acc-btn-zalo">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Tư vấn nghĩa vụ thuế qua Zalo</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- 7. PREPARATION & CTA SECTION -->
+    <div class="acc-cta-section">
+        <div class="acc-cta-grid">
+            <div class="acc-cta-left">
+                <h2>Hồ Sơ Cần Chuẩn Bị <span>Để Quyết Toán Thuế</span></h2>
+                <p>Để quá trình quyết toán thuế diễn ra nhanh nhất, khách hàng chỉ cần chuẩn bị một số hồ sơ bản
+                    chụp/scan cơ bản sau:</p>
+
+                <ul class="acc-doc-checklist">
+                    <li class="acc-doc-item">
+                        <div class="acc-doc-icon-wrapper">
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                style="width: 14px; height: 14px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span>Bản chụp CCCD/CMND hoặc Hộ chiếu còn hiệu lực.</span>
                     </li>
-                    <li>
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <strong>Tính toán chuẩn xác:</strong> Lập bảng tính tự động số thuế phải nộp thêm hoặc tối ưu số tiền được hoàn lại.
+                    <li class="acc-doc-item">
+                        <div class="acc-doc-icon-wrapper">
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                style="width: 14px; height: 14px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span>Mã số thuế cá nhân (nếu chưa có ACC sẽ hỗ trợ đăng ký).</span>
                     </li>
-                    <li>
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <strong>Kê khai Online 100%:</strong> Gửi hồ sơ thuế điện tử an toàn, bạn không cần tốn thời gian đi lại trực tiếp.
+                    <li class="acc-doc-item">
+                        <div class="acc-doc-icon-wrapper">
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                style="width: 14px; height: 14px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span>Chứng từ khấu trừ thuế TNCN do công ty chi trả cấp trong năm.</span>
                     </li>
-                    <li>
-                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-                        <strong>Đại diện nộp tiền/hoàn thuế:</strong> Theo dõi tiến độ hồ sơ liên tục cho đến khi nhận được kết quả cuối cùng.
+                    <li class="acc-doc-item">
+                        <div class="acc-doc-icon-wrapper">
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                style="width: 14px; height: 14px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span>Thư xác nhận thu nhập hoặc hợp đồng lao động ký trong năm.</span>
+                    </li>
+                    <li class="acc-doc-item">
+                        <div class="acc-doc-icon-wrapper">
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                style="width: 14px; height: 14px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span>Thông tin tài khoản ngân hàng chính chủ để nhận tiền hoàn thuế.</span>
+                    </li>
+                    <li class="acc-doc-item">
+                        <div class="acc-doc-icon-wrapper">
+                            <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                                style="width: 14px; height: 14px;">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <span>Thông tin người phụ thuộc (nếu phát sinh đăng ký giảm trừ).</span>
                     </li>
                 </ul>
-                <a href="https://zalo.me/2171133625094125529" target="_blank" class="acc-btn acc-btn-outline">Nhận Tư Vấn Hồ Sơ Của Bạn</a>
             </div>
-        </div>
-    </section>
 
-    <!-- 4. STATS HIGHLIGHT -->
-    <section class="acc-stats acc-anim">
-        <h3 style="color: #fff; text-align: center; font-size: 1.8rem; margin-bottom: 40px; font-weight: 700;">Tại Sao Lựa Chọn Luật ACC?</h3>
-        <div class="acc-stats-grid">
-            <div class="acc-stat-item">
-                <h4>99%</h4>
-                <p>Hồ sơ chuẩn xác hoàn toàn</p>
-            </div>
-            <div class="acc-stat-item">
-                <h4>2-3 Ngày</h4>
-                <p>Hoàn tất lập & nộp hồ sơ</p>
-            </div>
-            <div class="acc-stat-item">
-                <h4>0 Đồng</h4>
-                <p>Phát sinh chi phí ẩn</p>
-            </div>
-            <div class="acc-stat-item">
-                <h4>24/7</h4>
-                <p>Cam kết hỗ trợ giải trình</p>
-            </div>
-        </div>
-    </section>
+            <div class="acc-cta-right">
+                <h3>Liên Hệ ACC Ngay Hôm Nay</h3>
+                <p style="margin-bottom: 25px; font-size: 0.95rem;">Hạn chế tối đa sai sót hồ sơ, tối ưu số tiền hoàn
+                    thuế được nhận tối đa và đảm bảo nộp đúng hạn.</p>
 
-    <!-- 5. PROCESS -->
-    <section class="acc-process acc-container">
-        <h2 class="acc-title-sec acc-anim">Quy Trình 4 Bước Đơn Giản</h2>
-        <div class="acc-grid acc-grid-4 margin-top: 40px;">
-            <div class="acc-step-box acc-anim">
-                <div class="acc-step-num">1</div>
-                <h3>Tiếp nhận & Tư vấn</h3>
-                <p>Chuyên viên của ACC nhận thông tin sơ bộ, rà soát chứng từ từ khách hàng hoàn toàn miễn phí.</p>
-            </div>
-            <div class="acc-step-box acc-anim" style="transition-delay: 0.1s;">
-                <div class="acc-step-num">2</div>
-                <h3>Đối chiếu dữ liệu</h3>
-                <p>Kiểm tra chéo với dữ liệu từ Tổng cục Thuế, đảm bảo thu nhập và số liệu khớp 100%.</p>
-            </div>
-            <div class="acc-step-box acc-anim" style="transition-delay: 0.2s;">
-                <div class="acc-step-num">3</div>
-                <h3>Kê khai & Nộp hồ sơ</h3>
-                <p>Ký kết và tiến hành nộp hồ sơ quyết toán quyết toán qua Cổng thông tin điện tử.</p>
-            </div>
-            <div class="acc-step-box acc-anim" style="transition-delay: 0.3s;">
-                <div class="acc-step-num">4</div>
-                <h3>Bàn giao & Hỗ trợ</h3>
-                <p>Theo dõi xử lý, cập nhật tiến độ hoàn/thu thuế và hỗ trợ giải trình thuế sau đó.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. CONTACT CTA FOOTER -->
-    <section class="acc-contact">
-        <div class="acc-container">
-            <div class="acc-contact-box acc-anim">
-                <h2 class="acc-title-main" style="font-size: 2.2rem; margin-bottom: 10px;">Để Lại Điểm Khó - ACC Lo</h2>
-                <p style="font-size: 1.1rem; color: var(--acc-text-light);">Bạn có thuộc diện hoàn thuế không? Không biết bắt đầu từ đâu?<br>Kết nối với chuyên viên chứng chỉ hành nghề thuế ngay!</p>
-                
-                <div class="acc-contact-info">
-                    <div class="acc-contact-item">
-                        <svg viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56M15.78 14.36a1 1 0 0 0-.25.95l1.62 4.34A1 1 0 0 1 16.1 21H3.9a1 1 0 0 1-1.05-1.35l1.62-4.34a1 1 0 0 0-.25-.95M8 15.38c-1.11.36-2.3.56-3.53.56M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0.3"/><path d="M19.23 15.26l-2.58-.77a2 2 0 0 0-2.31.84l-1.44 2.15a13.38 13.38 0 0 1-6.19-6.19l2.15-1.44a2 2 0 0 0 .84-2.31l-.77-2.58A2.01 2.01 0 0 0 7.02 3.1h-3A2 2 0 0 0 2 5.21C2.56 14.1 9.9 21.44 18.79 22a2 2 0 0 0 2.11-2.02v-3a2.01 2.01 0 0 0-1.67-1.72z"/></svg>
-                        <span>Hotline Gọi Ngay</span>
-                        <a href="tel:19003330">1900 3330</a>
-                    </div>
-                    <div class="acc-contact-item">
-                        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                        <span>Email Hỗ Trợ</span>
-                        <a href="mailto:info@congtyluatacc.vn">info@congtyluatacc.vn</a>
-                    </div>
-                </div>
-
-                <div>
-                    <a href="https://zalo.me/2171133625094125529" target="_blank" class="acc-btn acc-btn-zalo" style="font-size: 1.1rem; padding: 15px 35px;">
-                        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M11.96 2C6.42 2 2 5.92 2 10.74c0 2.68 1.43 5.08 3.68 6.67-.32 1.25-1.25 3.32-1.32 3.49-.07.2-.01.43.15.54.15.11.36.11.52.01 2.6-1.57 4.54-2.67 4.8-2.82.7.16 1.43.25 2.17.25 5.54 0 10.04-3.92 10.04-8.74S17.5 2 11.96 2z"/></svg>
-                        Nhắn Tin Miễn Phí Qua Zalo
+                <div class="acc-cta-btn-group">
+                    <a href="tel:19003330" class="acc-btn acc-btn-accent">
+                        <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
+                        <span>Gọi Ngay: 1900 3330</span>
+                    </a>
+                    <a href="https://zalo.me/2171133625094125529" target="_blank" rel="noopener noreferrer"
+                        class="acc-btn acc-btn-primary">
+                        <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                        <span>Nhắn tin Zalo tư vấn (084.696.7979)</span>
                     </a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- JAVASCRIPT: Scroll Animations -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const animElements = document.querySelectorAll('.acc-anim');
+    <!-- 8. FAQ ACCORDION -->
+    <div class="acc-tax-section acc-faq-section acc-reveal">
+        <div class="acc-tax-section-title-wrap">
+            <span class="acc-tax-section-tag">Hỏi đáp dịch vụ</span>
+            <h2 class="acc-tax-section-title">Câu Hỏi Thường Gặp</h2>
+            <p class="acc-tax-section-desc">Giải đáp nhanh những thắc mắc của khách hàng gửi về hòm thư hỗ trợ thuế của
+                ACC.</p>
+        </div>
+
+        <div class="acc-faq-list">
+            <div class="acc-faq-item">
+                <div class="acc-faq-header" onclick="toggleFaq(this)">
+                    <h4>ACC có hỗ trợ quyết toán thuế cho người làm tự do (Freelance) hoặc thu nhập online không?</h4>
+                    <div class="acc-faq-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 14px; height: 14px; transition: var(--transition);">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="acc-faq-body">
+                    <div class="acc-faq-content">
+                        Có. ACC hỗ trợ tư vấn và thực hiện hồ sơ thuế chuyên biệt cho các cá nhân làm việc tự do, cộng
+                        tác viên doanh nghiệp, nhà sáng tạo nội dung trên nền tảng số (Youtube, TikTok, Facebook) hoặc
+                        cá nhân nhận thu nhập từ nhiều nguồn quốc tế khác nhau.
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-faq-item">
+                <div class="acc-faq-header" onclick="toggleFaq(this)">
+                    <h4>Thông tin thu nhập và hồ sơ của tôi có được bảo mật không?</h4>
+                    <div class="acc-faq-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 14px; height: 14px; transition: var(--transition);">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="acc-faq-body">
+                    <div class="acc-faq-content">
+                        ACC cam kết bảo mật thông tin tuyệt đối. Toàn bộ thông tin thu nhập, chứng từ thuế của khách
+                        hàng chỉ được sử dụng cho mục đích lập tờ khai quyết toán thuế gửi lên Tổng cục Thuế và tuyệt
+                        đối không chia sẻ cho bên thứ ba.
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-faq-item">
+                <div class="acc-faq-header" onclick="toggleFaq(this)">
+                    <h4>Trường hợp tôi không có chứng từ khấu trừ thuế thì có quyết toán được không?</h4>
+                    <div class="acc-faq-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 14px; height: 14px; transition: var(--transition);">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="acc-faq-body">
+                    <div class="acc-faq-content">
+                        Vẫn có giải pháp hỗ trợ xử lý. Tuy nhiên, việc thiếu chứng từ khấu trừ sẽ làm kéo dài quá trình
+                        đối chiếu dữ liệu của cơ quan thuế. Chuyên viên của ACC sẽ liên hệ cơ quan thuế quản lý hoặc các
+                        tổ chức chi trả để hỗ trợ bạn thu thập chứng từ hợp lệ hoặc tìm phương án kê khai thay thế phù
+                        hợp nhất.
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-faq-item">
+                <div class="acc-faq-header" onclick="toggleFaq(this)">
+                    <h4>Nghỉ việc giữa năm có bắt buộc phải tự quyết toán thuế thu nhập cá nhân không?</h4>
+                    <div class="acc-faq-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 14px; height: 14px; transition: var(--transition);">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="acc-faq-body">
+                    <div class="acc-faq-content">
+                        Nếu bạn nghỉ việc giữa năm và không đủ điều kiện để công ty hiện tại quyết toán thay, bạn bắt
+                        buộc phải tự thực hiện quyết toán thuế thu nhập cá nhân theo quy định của pháp luật.
+                    </div>
+                </div>
+            </div>
+
+            <div class="acc-faq-item">
+                <div class="acc-faq-header" onclick="toggleFaq(this)">
+                    <h4>Chưa có mã số thuế cá nhân có quyết toán thuế và xin hoàn tiền thuế được không?</h4>
+                    <div class="acc-faq-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            style="width: 14px; height: 14px; transition: var(--transition);">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
+                </div>
+                <div class="acc-faq-body">
+                    <div class="acc-faq-content">
+                        Mã số thuế cá nhân là bắt buộc để thực hiện quyết toán thuế và nộp đơn đề nghị hoàn tiền thuế.
+                        Nếu bạn chưa có mã số thuế, chuyên viên ACC sẽ hỗ trợ thực hiện thủ tục đăng ký cấp mã số thuế
+                        cá nhân trực tuyến trước khi tiến hành các bước kê khai quyết toán tiếp theo.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA button added for this section -->
+        <div class="acc-section-cta-wrap">
+            <a href="https://zalo.me/2171133625094125529" target="_blank" rel="noopener noreferrer"
+                class="acc-btn acc-btn-zalo">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Đặt Câu Hỏi Cho Chuyên Viên Qua Zalo</span>
+            </a>
+            <a href="tel:19003330" class="acc-btn acc-btn-primary">
+                <svg class="acc-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                </svg>
+                <span>Tổng Đài Giải Đáp: 1900 3330</span>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Logic xử lý Accordion mục FAQs
+    function toggleFaq(headerElement) {
+        const faqItem = headerElement.parentElement;
+        const faqBody = faqItem.querySelector('.acc-faq-body');
+        const isActive = faqItem.classList.contains('active');
+
+        // Đóng toàn bộ FAQ đang mở khác
+        const allItems = document.querySelectorAll('.acc-faq-item');
+        allItems.forEach(item => {
+            item.classList.remove('active');
+            item.querySelector('.acc-faq-body').style.maxHeight = null;
+        });
+
+        // Mở mục hiện tại nếu trước đó đang đóng
+        if (!isActive) {
+            faqItem.classList.add('active');
+            faqBody.style.maxHeight = faqBody.scrollHeight + "px";
+        }
+    }
+
+    // Logic Carousel quy trình chạy nằm ngang vô hạn, dừng khi rê chuột
+    document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.getElementById('accProcessCarousel');
+        if (carousel) {
+            let scrollSpeed = 0.8; // Tốc độ cuộn (pixel mỗi frame)
+            let isHovered = false;
+            let animationFrameId;
+
+            // Tạo bản sao các thẻ con để tạo hiệu ứng cuộn vô hạn liền mạch
+            const originalCards = Array.from(carousel.children);
+            originalCards.forEach(card => {
+                const clone = card.cloneNode(true);
+                carousel.appendChild(clone);
+            });
+
+            function scrollMarquee() {
+                if (!isHovered) {
+                    carousel.scrollLeft += scrollSpeed;
+
+                    // Khi cuộn hết chiều rộng của các phần tử gốc (1 nửa scrollWidth), trả về 0
+                    const halfWidth = carousel.scrollWidth / 2;
+                    if (carousel.scrollLeft >= halfWidth) {
+                        carousel.scrollLeft = 0;
+                    }
+                }
+                animationFrameId = requestAnimationFrame(scrollMarquee);
+            }
+
+            // Bắt đầu chạy vòng lặp cuộn tự động
+            animationFrameId = requestAnimationFrame(scrollMarquee);
+
+            // Lắng nghe sự kiện di chuột để dừng và chạy tiếp
+            carousel.addEventListener('mouseenter', () => {
+                isHovered = true;
+            });
+
+            carousel.addEventListener('mouseleave', () => {
+                isHovered = false;
+            });
+
+            // Hỗ trợ cuộn thủ công khi kéo (drag) bằng chuột trên máy tính
+            let isDown = false;
+            let startX;
+            let scrollLeftVal;
+
+            carousel.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isHovered = true;
+                startX = e.pageX - carousel.offsetLeft;
+                scrollLeftVal = carousel.scrollLeft;
+            });
+
+            carousel.addEventListener('mouseup', () => {
+                isDown = false;
+                isHovered = false;
+            });
+
+            carousel.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                carousel.scrollLeft = scrollLeftVal - walk;
+            });
+
+            // Hỗ trợ cuộn khi vuốt trên thiết bị di động (touch events)
+            carousel.addEventListener('touchstart', (e) => {
+                isHovered = true;
+                isDown = true;
+                startX = e.touches[0].pageX - carousel.offsetLeft;
+                scrollLeftVal = carousel.scrollLeft;
+            }, { passive: true });
+
+            carousel.addEventListener('touchend', () => {
+                isDown = false;
+                isHovered = false;
+            });
+
+            carousel.addEventListener('touchmove', (e) => {
+                if (!isDown) return;
+                const x = e.touches[0].pageX - carousel.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                carousel.scrollLeft = scrollLeftVal - walk;
+            }, { passive: true });
+        }
+    });
+
+    // Hiệu ứng Fade In Reveal khi cuộn trang (Intersection Observer)
+    document.addEventListener("DOMContentLoaded", function () {
+        const reveals = document.querySelectorAll(".acc-reveal");
+
+        if ('IntersectionObserver' in window) {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        entry.target.classList.add('acc-visible');
-                        observer.unobserve(entry.target);
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); // Reveal 1 lần duy nhất
                     }
                 });
             }, {
@@ -306,7 +2503,14 @@
                 rootMargin: "0px 0px -50px 0px"
             });
 
-            animElements.forEach(el => observer.observe(el));
-        });
-    </script>
-</div>
+            reveals.forEach(element => {
+                observer.observe(element);
+            });
+        } else {
+            // Fallback cho trình duyệt cũ
+            reveals.forEach(element => {
+                element.classList.add("active");
+            });
+        }
+    });
+</script>
